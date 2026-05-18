@@ -63,6 +63,23 @@ PACKAGES="$PACKAGES luci-i18n-filemanager-zh-cn"
 # 合并imm仓库以外的第三方插件
 PACKAGES="$PACKAGES $CUSTOM_PACKAGES"
 
+# ========= Additional service packages (N1 migration) =========
+# DDNS scripts + Cloudflare provider
+PACKAGES="$PACKAGES ddns-scripts ddns-scripts-cloudflare"
+# Tailscale requires TUN kernel module
+PACKAGES="$PACKAGES kmod-tun"
+# NFS kernel server
+PACKAGES="$PACKAGES nfs-kernel-server nfs-kernel-server-utils"
+# Samba4 server + WSDD (Windows network discovery)
+PACKAGES="$PACKAGES samba4-server wsdd2"
+# Wake-on-LAN
+PACKAGES="$PACKAGES etherwake"
+# Realtek RTL8169 NIC driver (default list lacks it)
+PACKAGES="$PACKAGES kmod-r8169"
+# Common tools
+PACKAGES="$PACKAGES htop tcpdump bsdtar unzip jq"
+# ==============================================================
+
 
 # 判断是否需要编译 Docker 插件
 if [ "$INCLUDE_DOCKER" = "yes" ]; then
